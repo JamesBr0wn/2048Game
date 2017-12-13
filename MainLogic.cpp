@@ -74,8 +74,12 @@ void MainLogic::start(){
     }
     move(8, 0);
     if(cond == Win){
+    	clear();
+    	move(BEGIN_X, BEGIN_Y);
         printw("You Win!");
     }else{
+        clear();
+    	move(BEGIN_X, BEGIN_Y);
         printw("You Lose!");
     }
     getch();
@@ -206,7 +210,7 @@ Condition MainLogic::judge(){
     bool full = true;
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
-            if(store[i][j] == 0 && full){
+            if(store[i][j] == 0){
                 full = false;
             }else if(store[i][j] == 2048){
                 return Win;
@@ -223,7 +227,7 @@ Condition MainLogic::judge(){
         }
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE-1; j++){
-                if(store[j][j] == store[j+1][i]){
+                if(store[j][i] == store[j+1][i]){
                     return Processing;
                 }
             }
